@@ -17,7 +17,6 @@ let playRound = (userPoints, computerPoints) => {
 
   if (playerSelection === computerSelection) {
     console.log("It's a tie!");
-    playRound();
   } else if (playerSelection == "Rock" && computerSelection == "Paper") {
     console.log("You lost, Paper beats Rock!");
     computerPoints = computerPoints + 1;
@@ -46,8 +45,17 @@ let game = () => {
   let computerPoints = 0;
 
   while (userPoints < 5 && computerPoints < 5) {
-    playRound();
+    let roundResult = playRound(userPoints, computerPoints);
+    userPoints = roundResult.userPoints;
+    computerPoints = roundResult.computerPoints;
     console.log(`Du hast ${userPoints} Punkte.`);
     console.log(`Der Computer hat ${computerPoints} Punkte.`);
   }
+  if (userPoints == 5) {
+    alert(`Cograts, you have ${userPoints}, you won!`);
+  } else {
+    alert(`Sorry, the computer has ${computerPoints}, you lost!`);
+  }
 };
+
+game();
