@@ -1,61 +1,75 @@
-let choiceArray = ["Rock", "Paper", "Scissor"];
+let userPoints = 0;
+let computerPoints = 0;
+let roundsPlayed = 0;
+let resultMessage = "";
 
+// DOM elements
+let playerScore = document.querySelector("#current-player-score");
+let computerScore = document.querySelector("#current-computer-score");
+let lastPlayerChoice = document.querySelector("#last-player-choice");
+let lastComputerChoice = document.querySelector("#last-computer-choice");
+
+// Get Computer Choice
 let getComputerChoice = () => {
+  let choiceArray = ["Rock", "Paper", "Scissor"];
   return choiceArray[Math.floor(Math.random() * choiceArray.length)];
 };
 
-let getUserChoice = () => {
-  let userInput = prompt("Wähle zwischen Rock, Paper oder Scissor: ");
-  let playerSelection =
-    userInput.charAt(0).toUpperCase() + userInput.slice(1).toLowerCase();
-  return playerSelection;
-};
+// Handle btn selected
+const container = document.querySelector("#container");
 
-let playRound = (userPoints, computerPoints) => {
-  let playerSelection = getUserChoice();
-  let computerSelection = getComputerChoice();
+container.addEventListener("click", (event) => {
+  let playerChoice = "";
+  let target = event.target;
+  switch (target.id) {
+    case "Rock":
+        playerChoice = target.id;
+      console.log(`User: ${playerChoice}`);
+      playRound(playerChoice, userPoints, computerPoints);
+      break;
+    case "Paper":
+        playerChoice = target.id;
+      console.log(`User: ${playerChoice}`);
+      playRound(playerChoice, userPoints, computerPoints);
+      break;
+    case "Scissor":
+        playerChoice = target.id;
+      console.log(`User: ${playerChoice}`);
+      playRound(playerChoice, userPoints, computerPoints);
+      break;
+  }
+});
 
-  if (playerSelection === computerSelection) {
-    console.log("It's a tie!");
-  } else if (playerSelection == "Rock" && computerSelection == "Paper") {
-    console.log("You lost, Paper beats Rock!");
+// Play one Round
+let playRound = (playerChoice) => {
+  let computerChoice = getComputerChoice();
+  console.log(`Comp: ${computerChoice}`);
+  if (computerChoice === playerChoice) {
+    resultMessage = "It's a tie.";
+  } else if (playerChoice == "Rock" && computerChoice == "Paper") {
+    resultMessage = "You lost, Paper beats Rock!";
     computerPoints = computerPoints + 1;
-  } else if (playerSelection == "Rock" && computerSelection == "Scissor") {
-    console.log("You won, Rock beats Scissor!");
+  } else if (playerChoice == "Rock" && computerChoice == "Scissor") {
+    resultMessage = "You won, Rock beats Scissor!";
     userPoints = userPoints + 1;
-  } else if (playerSelection == "Paper" && computerSelection == "Rock") {
-    console.log("You won, Paper beats Rock!");
+  } else if (playerChoice == "Paper" && computerChoice == "Rock") {
+    resultMessage = "You won, Paper beats Rock!";
     userPoints = userPoints + 1;
-  } else if (playerSelection == "Paper" && computerSelection == "Scissor") {
-    console.log("You lost, Scissor beats Paper!");
+  } else if (playerChoice == "Paper" && computerChoice == "Scissor") {
+    resultMessage = "You lost, Scissor beats Paper!";
     computerPoints = computerPoints + 1;
-  } else if (playerSelection == "Scissor" && computerSelection == "Paper") {
-    console.log("You won, Scissor beats Paper!");
+  } else if (playerChoice == "Scissor" && computerChoice == "Paper") {
+    resultMessage = "You won, Scissor beats Paper!";
     userPoints = userPoints + 1;
-  } else if (playerSelection == "Scissor" && computerSelection == "Rock") {
-    console.log("You lost, Rock beats Scissor!");
+  } else if (playerChoice == "Scissor" && computerChoice == "Rock") {
+    resultMessage = "You lost, Rock beats Scissor!";
     computerPoints = computerPoints + 1;
   }
-
+  console.log(resultMessage);
+  console.log(userPoints, computerPoints);
+  playerScore.textContent = userPoints;
+  computerScore.textContent = computerPoints;
+  lastPlayerChoice.textContent = playerChoice;
+  lastComputerChoice.textContent = computerChoice;
   return { userPoints, computerPoints };
 };
-
-let game = () => {
-  let userPoints = 0;
-  let computerPoints = 0;
-
-  while (userPoints < 5 && computerPoints < 5) {
-    let roundResult = playRound(userPoints, computerPoints);
-    userPoints = roundResult.userPoints;
-    computerPoints = roundResult.computerPoints;
-    console.log(`Du hast ${userPoints} Punkte.`);
-    console.log(`Der Computer hat ${computerPoints} Punkte.`);
-  }
-  if (userPoints == 5) {
-    alert(`Cograts, you have ${userPoints}, you won!`);
-  } else {
-    alert(`Sorry, the computer has ${computerPoints}, you lost!`);
-  }
-};
-
-game();
