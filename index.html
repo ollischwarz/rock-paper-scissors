@@ -1,44 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>rock-paper-scissors</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div id="container">
-    <div id="game-description">
-        <p>Let's play Rock, Paper, Scissors.<br> Whoever reaches 5 points first, wins!</p>
-    </div>
-    <div id="score">
-        <div id="player-score">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div id="game-description">
+        <p>
+          Let's play Rock, Paper, Scissors.<br />
+          Whoever reaches 5 points first, wins!
+        </p>
+      </div>
+    </header>
+    <main>
+      <div id="container">
+        <div id="score">
+          <div id="player-score">
             <p>Player score:</p>
             <p id="current-player-score"></p>
-        </div>
-        <div id="computer-score">
+          </div>
+          <div id="computer-score">
             <p>Computers score:</p>
             <p id="current-computer-score"></p>
+          </div>
+          <div id="winner-message">
+            <p id="winner-message-text"></p>
+          </div>
         </div>
-    </div>
-    <div class="btn">
-        <button id="Rock">Rock</button>
-        <button id="Paper">Paper</button>
-        <button id="Scissor">Scissors</button>
-    </div>
-    <div id="choice">
-        <div id="player-choice">
+        <div class="btn">
+          <button id="Rock">Rock</button>
+          <button id="Paper">Paper</button>
+          <button id="Scissor">Scissors</button>
+          <button id="Restart">Restart</button>
+        </div>
+        <div id="choice">
+          <div id="player-choice">
             <p>Your choice:</p>
             <p id="last-player-choice"></p>
-        </div>
-        <div id="computer-choice">
+          </div>
+          <div id="computer-choice">
             <p>Computers choice:</p>
             <p id="last-computer-choice"></p>
+          </div>
         </div>
-    </div>
-</div>
-
+      </div>
+    </main>
+    <footer>
+    </footer>
     <script src="main.js"></script>
-</body>
+  </body>
 </html>

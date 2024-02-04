@@ -1,13 +1,15 @@
 let userPoints = 0;
 let computerPoints = 0;
-let roundsPlayed = 0;
+// let roundsPlayed;
 let resultMessage = "";
+let gameMessage;
 
 // DOM elements
 let playerScore = document.querySelector("#current-player-score");
 let computerScore = document.querySelector("#current-computer-score");
 let lastPlayerChoice = document.querySelector("#last-player-choice");
 let lastComputerChoice = document.querySelector("#last-computer-choice");
+let winnerMessage = document.querySelector("#winner-message-text");
 
 // Get Computer Choice
 let getComputerChoice = () => {
@@ -19,25 +21,28 @@ let getComputerChoice = () => {
 const container = document.querySelector("#container");
 
 container.addEventListener("click", (event) => {
-  let playerChoice = "";
   let target = event.target;
+  let playerChoice = "";
   switch (target.id) {
     case "Rock":
-        playerChoice = target.id;
+      playerChoice = target.id;
       console.log(`User: ${playerChoice}`);
       playRound(playerChoice, userPoints, computerPoints);
       break;
     case "Paper":
-        playerChoice = target.id;
+      playerChoice = target.id;
       console.log(`User: ${playerChoice}`);
       playRound(playerChoice, userPoints, computerPoints);
       break;
     case "Scissor":
-        playerChoice = target.id;
+      playerChoice = target.id;
       console.log(`User: ${playerChoice}`);
       playRound(playerChoice, userPoints, computerPoints);
       break;
+    case "Restart":
+      restartGame();
   }
+  checkScore(userPoints, computerPoints);
 });
 
 // Play one Round
@@ -72,4 +77,29 @@ let playRound = (playerChoice) => {
   lastPlayerChoice.textContent = playerChoice;
   lastComputerChoice.textContent = computerChoice;
   return { userPoints, computerPoints };
+};
+
+// Check if game has ended
+let checkScore = (userPoints, computerPoints) => {
+  if (userPoints === 5 || computerPoints === 5) {
+    showWinnerMessage(userPoints, computerPoints);
+  }
+};
+
+// Show winner message
+let showWinnerMessage = (userPoints, computerPoints) => {
+  if (userPoints === 5) {
+    gameMessage = `Congrats, you won the game!`;
+  } else if (computerPoints === 5) {
+    gameMessage = `Sorry, you lost the game!`;
+  }
+  winnerMessage.textContent = gameMessage;
+};
+
+// Restart Game
+let restartGame = () => {
+  userPoints = 0;
+  computerPoints = 0;
+  playerScore.textContent = userPoints;
+  computerScore.textContent = computerPoints;
 };
