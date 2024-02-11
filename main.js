@@ -1,15 +1,14 @@
 let userPoints = 0;
 let computerPoints = 0;
-// let roundsPlayed;
-let resultMessage = "";
 let gameMessage;
+let resultMessage;
 
 // DOM elements
 let playerScore = document.querySelector("#current-player-score");
 let computerScore = document.querySelector("#current-computer-score");
 let lastPlayerChoice = document.querySelector("#last-player-choice");
 let lastComputerChoice = document.querySelector("#last-computer-choice");
-let winnerMessage = document.querySelector("#winner-message-text");
+let message = document.querySelector("#result-message-text");
 
 // Get Computer Choice
 let getComputerChoice = () => {
@@ -70,8 +69,7 @@ let playRound = (playerChoice) => {
     resultMessage = "You lost, Rock beats Scissor!";
     computerPoints = computerPoints + 1;
   }
-  console.log(resultMessage);
-  console.log(userPoints, computerPoints);
+  message.textContent = resultMessage; 
   playerScore.textContent = userPoints;
   computerScore.textContent = computerPoints;
   lastPlayerChoice.textContent = playerChoice;
@@ -100,6 +98,8 @@ let showWinnerMessage = (userPoints, computerPoints) => {
 let restartGame = () => {
   userPoints = 0;
   computerPoints = 0;
+  resultMessage = "";
+  message.textContent = resultMessage; 
   playerScore.textContent = userPoints;
   computerScore.textContent = computerPoints;
 };
