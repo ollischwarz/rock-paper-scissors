@@ -82,7 +82,7 @@ main {
   flex-direction: row;
   align-items: left;
 
-  gap: 16px;
+  gap: 8px;
   width: 100%;
 
   margin-bottom: 8px;
@@ -112,6 +112,10 @@ main {
   background-color: #363F51;
 }
 
+#Restart {
+  cursor: pointer;
+}
+
 #choice {
   display: flex;
   flex-direction: column;
@@ -127,4 +131,8 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.hidden {
+  visibility: hidden;
 }
